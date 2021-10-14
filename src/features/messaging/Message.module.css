@@ -1,0 +1,9 @@
+.messageItem {
+    padding: 10px;
+    background-color: rgba(228, 230, 235, 0.8);
+    max-width: 500px;
+}
+
+.stack {
+    padding-top: 20px;
+}

@@ -1,0 +1,8 @@
+ libretranslate:
+    image: libretranslate/libretranslate:main
+    container_name: "libretranslate"
+   # volumes:
+   #   - /volume1/docker/Libretranslate:/root/.local/share/argos-translate
+    ports:
+      - 5000:5000
+    restart: unless-stopped
