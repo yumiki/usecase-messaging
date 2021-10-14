@@ -1,10 +1,18 @@
+html, body {
+  height: 100%;
+}
+
 .App {
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 4vmin;
   pointer-events: none;
+  padding-bottom: 13px;
+  padding-right: 13px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -14,13 +22,56 @@
 }
 
 .App-header {
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  color: white;
+  background-color: rgb(0, 133, 190);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, .2);
+  position: fixed;
+  z-index: 2;
+  padding-left: 35px;
+  right: 0;
+  left: 0;
 }
+
+.App-container {
+  flex: 0 1 auto;
+  display: grid;
+  width: 100%;
+  margin-top: 84px;
+  grid-template-areas: "side main";
+  grid-template-columns: 150px 1fr;
+  overflow-y: scroll;
+  max-height: 77vh;
+}
+
+.App-maincontent {
+  grid-area: main;
+}
+
+
+.App-sidebar {
+  background-color: rgb(228, 230, 235);
+  width: 160px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0px;
+  bottom: 0px;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 105px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.App-footer {
+  position: fixed;
+  height: 120px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+}
+
 
 .App-link {
   color: rgb(112, 76, 182);

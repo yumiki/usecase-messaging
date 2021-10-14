@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
+import messagingReducer from '../features/messaging/messagingSlice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    messaging: messagingReducer
   },
 });
 
