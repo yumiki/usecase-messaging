@@ -1,8 +1,23 @@
- libretranslate:
-    image: libretranslate/libretranslate:main
-    container_name: "libretranslate"
+version: '3.7'
+
+services:
+
+  frontend:
+    container_name: frontbluenove
+    build: .
+    volumes:
+      - './:/app'
+      - '/app/node_modules'
+    ports:
+      - 4000:3000
+    stdin_open: true
+    command: npm start
+  
+  #libretranslate:
+  #  image: libretranslate/libretranslate:main
+  #  container_name: "libretranslate"
    # volumes:
    #   - /volume1/docker/Libretranslate:/root/.local/share/argos-translate
-    ports:
-      - 5000:5000
-    restart: unless-stopped
+  #  ports:
+  #    - 5000:5000
+  #  restart: unless-stopped

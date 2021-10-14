@@ -12,7 +12,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Bluenove Messaging</h1>
       </header>
-      <section className="App-container">
+      <section className="App-container" id="App-container">
         <aside className="App-sidebar"><LanguageSwitcher></LanguageSwitcher></aside>
         <main className="App-maincontent"><MessageList></MessageList></main>
       </section>

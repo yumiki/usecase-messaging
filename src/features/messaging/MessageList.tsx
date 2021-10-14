@@ -3,6 +3,7 @@ import { useAppSelector } from "../../app/hooks"
 import { selectAllMessages } from "./messagingSlice"
 import { Properties } from 'csstype'
 import styles from './Message.module.css'
+import { useEffect, useRef } from "react"
 
 type MessageItemProps = {
     children?: React.ReactNode;};
@@ -23,6 +24,15 @@ const MessageItem = ({children}: MessageItemProps) => {
 }
 
 export const MessageList = () => {
+
+    useEffect(() => {    
+        const stack = document.getElementById('App-container');
+        console.error('scroll to ', stack)
+        if (stack) {
+            stack.scrollTop = stack.scrollHeight 
+        }
+
+    });
     const messages = useAppSelector(selectAllMessages)
 
     const renderMessage = () => {
@@ -36,7 +46,7 @@ export const MessageList = () => {
     }
 
     return (
-        <div className={ styles.stack }>
+        <div id="messagesStack" className={ styles.stack }>
             <Stack
                 direction="column"
                 justifyContent="flex-end"
