@@ -6,19 +6,21 @@ import { fetchTranslation } from './messagingAPI';
 
 export interface MessagingState {
   messages: MessageModel[];
+  fetchingTranslation: 'idle' | 'loading' | 'failed'
   currentSelectedLanguage: LanguageShortName
 }
 
 const initialState: MessagingState = {
   messages: [],
+  fetchingTranslation: 'idle',
   currentSelectedLanguage: "fr"
 };
 
 
-export const getTranslationAsync = createAsyncThunk(
+export const getTranslationAsync = createAsyncThunk<any,{message: MessageModel, targetLanguage: LanguageShortName}>(
   'messaging/translate',
-  async (message: string) => {
-    const response = await fetchTranslation(message);
+  async (params: {message: MessageModel, targetLanguage: LanguageShortName}) => {
+    const response = await fetchTranslation(params.message, params.targetLanguage);
     return response;
   }
 );
@@ -46,11 +48,14 @@ export const messagingSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getTranslationAsync.pending, (state) => {
-        //state.status = 'loading';
+        state.fetchingTranslation = 'loading';
       })
       .addCase(getTranslationAsync.fulfilled, (state, action) => {
-        //state.status = 'idle';
-        //state.value += action.payload;
+        state.fetchingTranslation = 'idle';
+        state.messages = state.messages.map((message)=> {
+          console.log(`Les trads`, action.payload)
+          return message
+        })
       });
   },
 });

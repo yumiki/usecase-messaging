@@ -5,14 +5,16 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import supportedLanguages, { LanguageShortName } from "../app/supportedLanguages";
-import { changeLanguage,selectCurrentLanguage } from "../features/messaging/messagingSlice";
+import { changeLanguage,getTranslationAsync,selectAllMessages,selectCurrentLanguage } from "../features/messaging/messagingSlice";
 
 export const LanguageSwitcher = () => {
     const dispatch = useAppDispatch();
+    const messages = useAppSelector(selectAllMessages)
     const selectedLanguage = useAppSelector(selectCurrentLanguage)
 
     const handleChange = (event: SelectChangeEvent) => {
       dispatch(changeLanguage(event.target.value as LanguageShortName));
+      dispatch(getTranslationAsync({message: messages[0] , targetLanguage: event.target.value as LanguageShortName}))
     };
 
     const renderMenuItems = () => {
