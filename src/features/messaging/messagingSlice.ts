@@ -21,7 +21,7 @@ export const getTranslationAsync = createAsyncThunk<any,{message: MessageModel, 
   'messaging/translate',
   async (params: {message: MessageModel, targetLanguage: LanguageShortName}) => {
     const response = await fetchTranslation(params.message, params.targetLanguage);
-    return response;
+    return response.translatedText;
   }
 );
 

@@ -2,8 +2,7 @@ import { LanguageShortName } from "../../app/supportedLanguages";
 import { MessageModel } from "./MessageModel";
 
 export function fetchTranslation(message: MessageModel, targetLanguage: LanguageShortName) {
-
-    const fetchPromise = fetch("https://libretranslate.com/translate", {
+    const fetchPromise = fetch("http://localhost:5000/translate", {
       method: "POST",
       body: JSON.stringify({
         q: message.value,
